@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head">
+    <title>Report - Choose Category</title>
+</head>
+
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category:${categories}">
+            <td th:text="${category.categoryId}"></td>
+            <td th:text="${category.categoryName}"></td>
+            <td th:text="${category.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

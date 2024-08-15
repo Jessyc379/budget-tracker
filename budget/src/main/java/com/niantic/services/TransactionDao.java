@@ -1,6 +1,7 @@
 package com.niantic.services;
 
 
+import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,11 @@ public class TransactionDao
 
             }
             return transactions;
+        }
+
+        public ArrayList<Transaction> getTransactionByCategory(int id)
+        {
+            return new ArrayList<Transaction>();
         }
 
         public void addTransaction(Transaction transaction)
@@ -168,8 +174,6 @@ public class TransactionDao
         jdbcTemplate.update(sql, id);
 
     }
-
-
 
 
 
