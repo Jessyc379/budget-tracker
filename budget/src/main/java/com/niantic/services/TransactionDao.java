@@ -158,6 +158,17 @@ public class TransactionDao
 
     }
 
+    public void deleteTransaction (int id)
+    {
+        String sql = """
+                DELETE FROM transactions
+                WHERE transaction_id = ?;
+               """;
+
+        jdbcTemplate.update(sql, id);
+
+    }
+
 
 
 

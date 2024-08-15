@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head"></head>
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<main>
+    <h1>Delete Transactions</h1>
+    <p>You are about to delete the following transaction, do you want to continue?</p>
+    <form method="post">
+        <input type="submit" value="Delete">
+        <a th:href="@{|/transactions|}">Cancel</a>
+    </form>
+
+    <br>
+    <table>
+        <tr>
+            <th>Transaction Id</th>
+            <td th:text="${transaction.transactionId}"></td>
+        </tr>
+        <tr>
+            <th>Category Name</th>
+            <td th:text="${transaction.categoryId}"></td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td th:text="${transaction.userId}"></td>
+        </tr>
+        <tr>
+            <th>Vendor Name</th>
+            <td th:text="${transaction.vendorId}"></td>
+        </tr>
+        <tr>
+            <th>Transaction Date</th>
+            <td th:text="${transaction.transactionDate}"></td>
+        </tr>
+        <tr>
+            <th>Amount</th>
+            <td th:text="${transaction.amount}"></td>
+        </tr>
+        <tr>
+            <th>Notes</th>
+            <td th:text="${transaction.notes}"></td>
+        </tr>
+
+    </table>
+</main>
+</body>
+</html>
