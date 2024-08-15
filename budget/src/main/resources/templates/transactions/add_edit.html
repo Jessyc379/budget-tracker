@@ -10,11 +10,15 @@
     <form action="" th:object="${transaction}" method="post">
         <div>
             <label class="" th:for="*{userId}"> User Name</label>
-            <input class="" type="text" placeholder="User Name" th:field="*{userId}">
+            <select type="text" placeholder="User Name" th:field="*{userId}">
+                <option th:each="user:${users}" th:text="${user.userName}" th:value="${user.userId}"></option>
+            </select>
         </div>
         <div>
             <label class="" th:for="*{categoryId}">Category Name</label>
-            <input class="" type="text" placeholder="Category Name" th:field="*{categoryId}">
+            <select type="text" placeholder="Category Name" th:field="*{categoryId}">
+                <option th:each="category:${categories}" th:text="${category.categoryName}" th:value="${category.categoryId}"></option>
+            </select>
         </div>
         <div>
             <label class="" th:for="*{vendorId}">Vendor Name</label>

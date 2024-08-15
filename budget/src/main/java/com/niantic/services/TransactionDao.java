@@ -19,7 +19,7 @@ public class TransactionDao
 
     private final JdbcTemplate jdbcTemplate;
 
-
+    @Autowired
     public TransactionDao(){
 
         BasicDataSource dataSource = new BasicDataSource();
