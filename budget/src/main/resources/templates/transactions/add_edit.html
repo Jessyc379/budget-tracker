@@ -5,7 +5,8 @@
 <nav th:replace="fragments/nav :: nav"></nav>
 
 <main>
-    <h1>Add Transaction</h1>
+    <h1 th:if="${action} =='add'">Add Transaction</h1>
+    <h1 th:if="${action} =='edit'">Edit Transaction</h1>
 
     <form action="" th:object="${transaction}" method="post">
         <div>

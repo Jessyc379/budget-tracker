@@ -95,6 +95,70 @@ public class TransactionDao
         }
 
 
+    public Transaction getTransactionById(int searchUId)
+    {
+
+        String sql = """
+                SELECT transaction_id
+                    , user_id
+                    , category_id
+                    , vendor_id
+                    , transaction_date
+                    , amount
+                    , notes
+                FROM transactions
+                WHERE transaction_id = ?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, searchUId);
+
+        if(row.next()) {
+            int transactionId = row.getInt("transaction_id");
+            int userId = row.getInt("user_id");
+            int categoryId = row.getInt("category_id");
+            int vendorId = row.getInt("vendor_id");
+            LocalDate transactionDate = null;
+            BigDecimal amount = row.getBigDecimal("amount");
+            String notes = row.getString("notes");
+
+            var convertDate = row.getDate("transaction_date");
+            if(convertDate != null)
+            {
+                transactionDate = convertDate.toLocalDate();
+            }
+
+            return new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+        }
+
+     return null;
+
+    }
+
+    public void updateTransaction (Transaction transaction)
+    {
+        String sql = """
+                UPDATE transactions
+                SET user_id = ?
+                    , category_id = ?
+                    , vendor_id = ?
+                    , transaction_date = ?
+                    , amount = ?
+                    , notes = ?
+                WHERE transaction_id = ?;
+               """;
+
+        jdbcTemplate.update(sql,
+                transaction.getUserId(),
+                transaction.getCategoryId(),
+                transaction.getVendorId(),
+                transaction.getTransactionDate(),
+                transaction.getAmount(),
+                transaction.getNotes(),
+                transaction.getTransactionId()
+        );
+
+    }
+
+
 
 
 

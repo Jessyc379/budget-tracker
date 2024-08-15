@@ -63,7 +63,28 @@ public class TransactionsController {
     @GetMapping("/transactions/{id}/edit")
     public String editTransactions(Model model, @PathVariable int id)
     {
-        Transaction transaction = transactionDao.get
+        Transaction transaction = transactionDao.getTransactionById(id);
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("users", users);
+        model.addAttribute("vendors", vendors);
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("action", "edit");
+
+        return "transactions/add_edit";
+
+    }
+
+    @PostMapping("/transactions/{id}/edit")
+    public String editTransactions(@ModelAttribute("transaction") Transaction transaction, @PathVariable int id)
+    {
+        transaction.setTransactionId(id);
+        transactionDao.updateTransaction(transaction);
+        return "redirect:/transactions";
+
 
     }
 
