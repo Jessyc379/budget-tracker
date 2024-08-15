@@ -22,7 +22,9 @@
         </div>
         <div>
             <label class="" th:for="*{vendorId}">Vendor Name</label>
-            <input class="" type="text" placeholder="Vendor Name" th:field="*{vendorId}">
+            <select class="" type="text" placeholder="Vendor Name" th:field="*{vendorId}">
+                <option th:each="vendor:${vendors}" th:text="${vendor.vendorName}" th:value="${vendor.vendorId}"></option>
+            </select>
         </div>
         <div>
             <label class="" th:for="*{transactionDate}">Transaction Date</label>
