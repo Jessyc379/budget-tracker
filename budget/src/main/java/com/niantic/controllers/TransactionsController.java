@@ -32,7 +32,15 @@ public class TransactionsController {
     public String getAllTransactions(Model model)
     {
         ArrayList<Transaction> transactions = transactionDao.getAllTransactions();
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+
         model.addAttribute("transactions", transactions);
+        model.addAttribute("categories", categories);
+        model.addAttribute("users", users);
+        model.addAttribute("vendors", vendors);
+
         return "transactions/index";
     }
 
