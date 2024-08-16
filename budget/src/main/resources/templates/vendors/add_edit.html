@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head">
+
+</head>
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<main>
+    <h1 th:if="${action} =='add'">Add User</h1>
+    <h1 th:if="${action} =='edit'">Edit User</h1>
+
+    <form action="" th:object="${user}" method="post">
+        <div>
+            <label class="" th:for="*{userName}"> User Name</label>
+            <input  type="text" placeholder="User Name" th:field="*{userName}">
+        </div>
+        <div>
+            <label class="" th:for="*{firstName}">First Name</label>
+            <input type="text" placeholder="First Name" th:field="*{firstName}">
+        </div>
+        <div>
+            <label class="" th:for="*{lastName}">Last Name</label>
+            <input class="" type="text" placeholder="Last Name" th:field="*{lastName}">
+
+        </div>
+        <div>
+            <label class="" th:for="*{phone}">Phone</label>
+            <input class="" type="text" placeholder="Phone" th:field="*{phone}">
+        </div>
+        <div>
+            <label class="" th:for="*{email}">Email</label>
+            <input class="" type="text" placeholder="Email" th:field="*{email}">
+        </div>
+
+
+        <input class="" type="submit" value="save">
+
+
+    </form>
+</main>
+</body>
+</html>
