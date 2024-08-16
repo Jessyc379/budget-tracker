@@ -236,6 +236,24 @@ public class TransactionDao {
         return transactions;
     }
 
+    public ArrayList<Integer> getYearlyTransaction() {
+
+        ArrayList<Integer> years = new ArrayList<>();
+
+        String sql = """
+                SELECT DISTINCT YEAR(transaction_date)
+                FROM transactions
+                ORDER BY YEAR(transaction_date) DESC;
+                """;
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql);
+
+        while (row.next()) {
+            int year = row.getInt("YEAR(transaction_date)");
+            //this may error out if column dates doesn't match
+            years.add(year);
+        }
+        return years;
+    }
 
 
 

@@ -167,8 +167,12 @@ public class ReportsController {
     }
 
     @GetMapping("/report/year")
-    public String reportAllYears()
+    public String reportAllYears(Model model)
     {
+        ArrayList<Integer> year = transactionDao.getYearlyTransaction();
+
+        model.addAttribute("years", year);
+
 
         return "/reports/year_menu";
     }
