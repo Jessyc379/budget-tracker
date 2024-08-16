@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -74,7 +75,46 @@ public class TransactionDao
 
         public ArrayList<Transaction> getTransactionByCategory(int id)
         {
-            return new ArrayList<Transaction>();
+            ArrayList<Transaction> transactions = new ArrayList<>();
+
+            String sql = """
+                    SELECT transactions.transaction_id
+                        , transactions.user_id
+                        , transactions.category_id
+                        , transactions.vendor_id
+                        , transactions.transaction_date
+                        , transactions.amount
+                        , transactions.notes
+                    FROM transactions
+                    INNER JOIN categories ON transactions.category_id = categories.category_id
+                    WHERE transactions.category_id = ?;
+                    """;
+
+            SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
+
+            while (row.next())
+            {
+                int transactionId = row.getInt("transaction_id");
+                int userId = row.getInt("user_id");
+                int categoryId = row.getInt("category_id");
+                int vendorId = row.getInt("vendor_id");
+                LocalDate transactionDate = null;
+                BigDecimal amount = row.getBigDecimal("amount");
+                String notes = row.getString("notes");
+
+                Date convertDate = row.getDate("transaction_date");
+
+                if (convertDate != null)
+                {
+                    transactionDate = convertDate.toLocalDate();
+                }
+
+                Transaction transaction = new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+
+                transactions.add(transaction);
+            }
+
+            return transactions;
         }
 
         public void addTransaction(Transaction transaction)

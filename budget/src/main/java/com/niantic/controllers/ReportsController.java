@@ -37,11 +37,14 @@ public class ReportsController {
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(id);
         Category category = categoryDao.getCategoryById(id);
-        String catName = category.getCategoryName();
 
-        model.addAttribute("transacations", transactions);
+        // Making Header with String Format
+        String catName = category.getCategoryName();
+        String message = String.format("Report by Category: %s", catName);
+
+        model.addAttribute("transactions", transactions);
         model.addAttribute("category", category);
-        model.addAttribute("categoryName", catName);
+        model.addAttribute("message", message);
 
         return "reports/category";
     }
