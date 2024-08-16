@@ -1,13 +1,40 @@
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/transactions">Transactions</a></li>
-        <li><a href="/report/category">Category Reports</a></li>
-        <li><a href="/report/user"> User Reports</a></li>
-        <li><a href="/report/month"> Month Reports</a></li>
-        <li><a href="/report/year"> Year Reports</a></li>
-        <li><a href="/user">Users</a></li>
-        <li><a href="/category">Categories</a></li>
-        <li><a href="/vendor">Vendors</a></li>
-    </ul>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Budget Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/transactions">Transactions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/category">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/vendor">Vendors</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/report/user">By User</a>
+                        <a class="dropdown-item" href="/report/category">By Category</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/report/month">By Month</a>
+                        <a class="dropdown-item" href="/report/year">By Year</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
