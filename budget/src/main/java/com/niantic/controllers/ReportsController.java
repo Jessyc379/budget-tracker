@@ -2,6 +2,7 @@ package com.niantic.controllers;
 
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
@@ -32,6 +33,8 @@ public class ReportsController {
         return "reports/category_menu";
     }
 
+
+
     @GetMapping("/report/category/{id}")
     public String reportByCategory(Model model, @PathVariable int id)
     {
@@ -46,6 +49,35 @@ public class ReportsController {
         model.addAttribute("category", category);
         model.addAttribute("message", message);
 
-        return "reports/category";
+        return "reports/reports";
     }
+
+    @GetMapping("/report/user")
+    public String getAllUsers(Model model)
+    {
+        ArrayList<User> users = userDao.getAllUsers();
+
+        model.addAttribute("users", users);
+
+        return "reports/user_menu";
+    }
+
+    @GetMapping("/report/user/{id}")
+    public String reportByUser(Model model, @PathVariable int id)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
+        User user = userDao.getUserById(id);
+
+        // Making Header with String Format
+        String useName = user.getUserName();
+        String message = String.format("Report by User: %s", useName);
+
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("user", user);
+        model.addAttribute("message", message);
+
+        return "reports/reports";
+    }
+
+
 }

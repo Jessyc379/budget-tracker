@@ -3,6 +3,7 @@ package com.niantic.services;
 
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
+import com.niantic.models.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -115,6 +116,51 @@ public class TransactionDao
             }
 
             return transactions;
+        }
+
+        public ArrayList<Transaction> getTransactionByUser(int id)
+        {
+            ArrayList<Transaction> transactions = new ArrayList<>();
+
+            String sql = """
+                    SELECT users.user_name
+                    	, transactions.vendor_id
+                        , transactions.transaction_date
+                        , transactions.amount
+                        , transactions.notes
+                        , transactions.category_id
+                        , transactions.transaction_id
+                        , users.user_id
+                    FROM transactions
+                    INNER JOIN users on transactions.user_id = users.user_id
+                    WHERE transactions.user_id = ?;
+                    """;
+            SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
+
+            while(row.next())
+            {
+                String userName = row.getString("user_name");
+                int vendorId = row.getInt("vendor_id");
+                LocalDate transactionDate = null;
+                BigDecimal amount = row.getBigDecimal("amount");
+                String notes = row.getString("notes");
+                int categoryId = row.getInt("category_id");
+                int transactionId = row.getInt("transaction_id");
+                int userId = row.getInt("user_id");
+
+                var convertDate = row.getDate("transaction_date");
+
+                if( convertDate != null)
+                {
+                    transactionDate = convertDate.toLocalDate();
+                }
+
+                Transaction transaction = new Transaction(transactionId, userId, categoryId, vendorId, transactionDate, amount, notes);
+
+                transactions.add(transaction);
+
+            }
+           return transactions;
         }
 
         public void addTransaction(Transaction transaction)
