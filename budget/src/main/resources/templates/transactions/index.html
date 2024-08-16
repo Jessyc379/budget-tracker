@@ -4,13 +4,13 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5">
     <h1>All Transactions</h1>
-    <a href="/transactions/add">Add Transaction</a>
+    <a href="/transactions/add" class="btn btn-info mb-2">Add Transaction</a>
 
-    <table>
+    <table class="table table-striped">
         <thead>
-        <tr>
+        <tr class="table-secondary">
             <th>Transaction Id</th>
             <th>Category Name</th>
             <th>Username</th>
@@ -32,8 +32,8 @@
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>
             <td>
-                <a th:href="@{|/transactions/${transaction.transactionId}/edit|}">Edit</a>
-                <a th:href="@{|/transactions/${transaction.transactionId}/delete|}">Delete</a>
+                <a th:href="@{|/transactions/${transaction.transactionId}/edit|}" class="btn btn-secondary me-2">Edit</a>
+                <a th:href="@{|/transactions/${transaction.transactionId}/delete|}" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>
         </tbody>

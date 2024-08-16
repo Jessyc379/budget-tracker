@@ -8,15 +8,15 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5">
 
     <h1>All Categories</h1>
 
-    <a th:href="@{|/category/add|}">Add Category</a>
+    <a th:href="@{|/category/add|}" class="btn btn-info mb-2">Add Category</a>
 
-    <table>
+    <table class="table table-striped">
         <thead>
-        <tr>
+        <tr class="table-secondary">
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
@@ -26,9 +26,9 @@
         <tbody>
         <tr th:each="category:${categories}">
             <td th:text="${category.categoryId}"></td>
-            <td><a th:text="${category.categoryName}" th:href="@{|/report/category/${category.categoryId}|}"></a></td>
+            <th><a th:text="${category.categoryName}" th:href="@{|/report/category/${category.categoryId}|}"></a></th>
             <td th:text="${category.description}"></td>
-            <td><a th:href="@{|/category/${category.categoryId}/edit|}">Edit</a></td>
+            <td><a th:href="@{|/category/${category.categoryId}/edit|}" class="btn btn-secondary">Edit</a></td>
         </tr>
         </tbody>
     </table>
