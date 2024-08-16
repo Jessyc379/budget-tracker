@@ -7,6 +7,7 @@ import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
 import com.niantic.services.VendorDao;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -139,6 +140,29 @@ public class ReportsController {
 
         return "reports/reports";
     }
+
+    @GetMapping("/report/year")
+    public String reportAllYears()
+    {
+
+        return "/reports/year_menu";
+    }
+
+    @GetMapping("/report/year/{year}")
+    public String reportByYear(Model model, @PathVariable int year)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByYear(year);
+
+        //add header stuff
+        String message = String.format(" Reports by Year %d", year);
+
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("message", message);
+
+        return "reports/reports";
+
+    }
+
 
 
 }
