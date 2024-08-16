@@ -25,21 +25,9 @@
         <tbody>
         <tr th:each="transaction:${transactions}">
             <td th:text="${transaction.transactionId}"></td>
-            <td>
-                <div class="id-name" th:each="category:${categories}" style="display:inline-block, margin:0, padding:0;">
-                    <span th:if="${transaction.categoryId} == ${category.categoryId}" th:text="${category.categoryName}"></span>
-                </div>
-            </td>
-            <td>
-                <div class="id-name" th:each="user:${users}" style="display:inline-block, margin:0, padding:0;">
-                    <span th:if="${transaction.userId} == ${user.userId}" th:text="${user.userName}"></span>
-                </div>
-            </td>
-            <td>
-                <div class="id-name" th:each="vendor:${vendors}" style="display:inline-block, margin:0, padding:0;">
-                    <span th:if="${transaction.vendorId} == ${vendor.vendorId}" th:text="${vendor.vendorName}"></span>
-                </div>
-            </td>
+            <td th:each="category:${categories}" th:if="${transaction.categoryId} == ${category.categoryId}" th:text="${category.categoryName}"></td>
+            <td th:each="user:${users}" th:if="${transaction.userId} == ${user.userId}" th:text="${user.userName}"></td>
+            <td th:each="vendor:${vendors}" th:if="${transaction.vendorId} == ${vendor.vendorId}" th:text="${vendor.vendorName}"></td>
             <td th:text="${transaction.transactionDate}"></td>
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>
