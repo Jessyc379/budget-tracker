@@ -79,5 +79,66 @@ public class ReportsController {
         return "reports/reports";
     }
 
+    @GetMapping("/report/month")
+    public String getAllMonths()
+    {
+        return "reports/month_menu";
+    }
+
+    @GetMapping("/report/month/{monthNum}")
+    public String reportByMonth(Model model, @PathVariable int monthNum)
+    {
+        ArrayList<Transaction> transactions = transactionDao.getTransactionByMonth(monthNum);
+        String monthName = "";
+
+        switch (monthNum)
+        {
+            case 1:
+                monthName = "January";
+                break;
+            case 2:
+                monthName = "February";
+                break;
+            case 3:
+                monthName = "March";
+                break;
+            case 4:
+                monthName = "April";
+                break;
+            case 5:
+                monthName = "May";
+                break;
+            case 6:
+                monthName = "June";
+                break;
+            case 7:
+                monthName = "July";
+                break;
+            case 8:
+                monthName = "August";
+                break;
+            case 9:
+                monthName = "September";
+                break;
+            case 10:
+                monthName = "October";
+                break;
+            case 11:
+                monthName = "November";
+                break;
+            case 12:
+                monthName = "December";
+                break;
+        }
+
+        // Making Header with String Format
+        String message = String.format("Report by Month: %s", monthName);
+
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("message", message);
+
+        return "reports/reports";
+    }
+
 
 }

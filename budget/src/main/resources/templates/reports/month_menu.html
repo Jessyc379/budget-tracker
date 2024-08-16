@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="fragments/head :: head">
+    <title>Report - Choose Month</title>
+</head>
+
+
+<body>
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Month Number</th>
+            <th>Month Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td><a th:href="@{|/report/month/1|}">January</a></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a th:href="@{|/report/month/2|}">February</a></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><a th:href="@{|/report/month/3|}">March</a></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><a th:href="@{|/report/month/4|}">April</a></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><a th:href="@{|/report/month/5|}">May</a></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><a th:href="@{|/report/month/6|}">June</a></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><a th:href="@{|/report/month/7|}"July</a></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td><a th:href="@{|/report/month/8|}">August</a></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td><a th:href="@{|/report/month/9|}">September</a></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><a th:href="@{|/report/month/10|}">October</a></td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td><a th:href="@{|/report/month/11|}">November</a></td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td><a th:href="@{|/report/month/12|}">December</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>
