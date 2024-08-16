@@ -22,7 +22,7 @@ public class Vendor {
 
     public void setVendorId(int id)
     {
-        this.vendorId = vendorId;
+        this.vendorId = id;
     }
 
     public String getVendorName() {

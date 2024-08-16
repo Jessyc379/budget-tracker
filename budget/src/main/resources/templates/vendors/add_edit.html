@@ -8,30 +8,17 @@
 <nav th:replace="fragments/nav :: nav"></nav>
 
 <main>
-    <h1 th:if="${action} =='add'">Add User</h1>
-    <h1 th:if="${action} =='edit'">Edit User</h1>
+    <h1 th:if="${action} =='add'">Add Vendor</h1>
+    <h1 th:if="${action} =='edit'">Edit Vendor</h1>
 
-    <form action="" th:object="${user}" method="post">
+    <form action="" th:object="${vendor}" method="post">
         <div>
-            <label class="" th:for="*{userName}"> User Name</label>
-            <input  type="text" placeholder="User Name" th:field="*{userName}">
+            <label class="" th:for="*{vendorName}"> Vendor Name</label>
+            <input  type="text" placeholder="Vendor Name" th:field="*{vendorName}">
         </div>
         <div>
-            <label class="" th:for="*{firstName}">First Name</label>
-            <input type="text" placeholder="First Name" th:field="*{firstName}">
-        </div>
-        <div>
-            <label class="" th:for="*{lastName}">Last Name</label>
-            <input class="" type="text" placeholder="Last Name" th:field="*{lastName}">
-
-        </div>
-        <div>
-            <label class="" th:for="*{phone}">Phone</label>
-            <input class="" type="text" placeholder="Phone" th:field="*{phone}">
-        </div>
-        <div>
-            <label class="" th:for="*{email}">Email</label>
-            <input class="" type="text" placeholder="Email" th:field="*{email}">
+            <label class="" th:for="*{website}">Website</label>
+            <input type="text" placeholder="Website" th:field="*{website}">
         </div>
 
 
