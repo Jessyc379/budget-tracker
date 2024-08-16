@@ -25,9 +25,23 @@
         <tbody>
         <tr th:each="transaction:${transactions}">
             <td th:text="${transaction.transactionId}"></td>
-            <td th:text="${transaction.categoryId}"></td>
-            <td th:text="${transaction.userId}"></td>
-            <td th:text="${transaction.vendorId}"></td>
+            <td>
+                <span th:if="${action} == 'category'" th:text="${categoryName}"></span>
+                <div th:if="${action} != 'category'" th:each="category:${categories}">
+                    <span th:if="${transaction.categoryId} == ${category.categoryId}" th:text="${category.categoryName}"></span>
+                </div>
+            </td>
+            <td>
+                <span th:if="${action} == 'user'" th:text="${userName}"></span>
+                <div th:if="${action} != 'user'" th:each="user:${users}">
+                    <span th:if="${transaction.userId} == ${user.userId}" th:text="${user.userName}"></span>
+                </div>
+            </td>
+            <td>
+            <div th:each="vendor:${vendors}">
+                <span th:if="${transaction.vendorId} == ${vendor.vendorId}" th:text="${vendor.vendorName}"></span>
+            </div>
+            </td>
             <td th:text="${transaction.transactionDate}"></td>
             <td th:text="${transaction.amount}"></td>
             <td th:text="${transaction.notes}"></td>

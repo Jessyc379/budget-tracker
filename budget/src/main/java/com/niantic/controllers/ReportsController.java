@@ -3,6 +3,7 @@ package com.niantic.controllers;
 import com.niantic.models.Category;
 import com.niantic.models.Transaction;
 import com.niantic.models.User;
+import com.niantic.models.Vendor;
 import com.niantic.services.CategoryDao;
 import com.niantic.services.TransactionDao;
 import com.niantic.services.UserDao;
@@ -29,7 +30,9 @@ public class ReportsController {
     {
         ArrayList<Category> categories = categoryDao.getAllCategories();
 
+
         model.addAttribute("categories", categories);
+
 
         return "reports/category_menu";
     }
@@ -41,6 +44,10 @@ public class ReportsController {
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByCategory(id);
         Category category = categoryDao.getCategoryById(id);
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+        ArrayList<User> users  = userDao.getAllUsers();
+
+
 
         // Making Header with String Format
         String catName = category.getCategoryName();
@@ -49,6 +56,11 @@ public class ReportsController {
         model.addAttribute("transactions", transactions);
         model.addAttribute("category", category);
         model.addAttribute("message", message);
+        model.addAttribute("vendors", vendors);
+        model.addAttribute("users", users);
+        model.addAttribute("action", "category");
+        model.addAttribute("categoryName", catName);
+
 
         return "reports/reports";
     }
@@ -67,6 +79,8 @@ public class ReportsController {
     public String reportByUser(Model model, @PathVariable int id)
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByUser(id);
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+        ArrayList<Category> categories = categoryDao.getAllCategories();
         User user = userDao.getUserById(id);
 
         // Making Header with String Format
@@ -76,6 +90,10 @@ public class ReportsController {
         model.addAttribute("transactions", transactions);
         model.addAttribute("user", user);
         model.addAttribute("message", message);
+        model.addAttribute("vendors", vendors);
+        model.addAttribute("categories", categories);
+        model.addAttribute("action", "user");
+        model.addAttribute("userName", useName);
 
         return "reports/reports";
     }
@@ -90,6 +108,9 @@ public class ReportsController {
     public String reportByMonth(Model model, @PathVariable int monthNum)
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByMonth(monthNum);
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Category> categories = categoryDao.getAllCategories();
         String monthName = "";
 
         switch (monthNum)
@@ -137,6 +158,10 @@ public class ReportsController {
 
         model.addAttribute("transactions", transactions);
         model.addAttribute("message", message);
+        model.addAttribute("vendors", vendors);
+        model.addAttribute("users", users);
+        model.addAttribute("categories", categories);
+        model.addAttribute("action", "month");
 
         return "reports/reports";
     }
@@ -152,12 +177,19 @@ public class ReportsController {
     public String reportByYear(Model model, @PathVariable int year)
     {
         ArrayList<Transaction> transactions = transactionDao.getTransactionByYear(year);
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
+        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Category> categories = categoryDao.getAllCategories();
 
         //add header stuff
         String message = String.format(" Reports by Year %d", year);
 
         model.addAttribute("transactions", transactions);
         model.addAttribute("message", message);
+        model.addAttribute("vendors", vendors);
+        model.addAttribute("users", users);
+        model.addAttribute("categories", categories);
+        model.addAttribute("action", "year");
 
         return "reports/reports";
 
