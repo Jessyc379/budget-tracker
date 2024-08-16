@@ -128,4 +128,19 @@ public class CategoryDao
                 category.getDescription());
 
     }
+
+    public void updateCategory(Category category)
+    {
+        String sql= """
+                UPDATE categories
+                SET category_name = ?
+                    , description = ?
+                WHERE category_id = ?
+                """;
+
+        jdbcTemplate.update(sql,
+                category.getCategoryName(),
+                category.getDescription(),
+                category.getCategoryId());
+    }
 }

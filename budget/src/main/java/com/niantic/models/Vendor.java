@@ -20,6 +20,11 @@ public class Vendor {
         return vendorId;
     }
 
+    public void setVendorId(int id)
+    {
+        this.vendorId = vendorId;
+    }
+
     public String getVendorName() {
         return vendorName;
     }

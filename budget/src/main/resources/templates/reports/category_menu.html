@@ -14,14 +14,12 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Description</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="category:${categories}">
             <td th:text="${category.categoryId}"></td>
             <td><a th:text="${category.categoryName}" th:href="@{|/report/category/${category.categoryId}|}"></a></td>
-            <td th:text="${category.description}"></td>
         </tr>
         </tbody>
     </table>

@@ -1,64 +1,64 @@
 package com.niantic.controllers;
 
-import com.niantic.models.User;
-import com.niantic.services.UserDao;
-import org.springframework.boot.Banner;
+import com.niantic.models.Vendor;
+import com.niantic.services.VendorDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import org.springframework.stereotype.Controller;
 
 @Controller
-public class UserController {
-    private UserDao userDao = new UserDao();
+public class VendorController {
+    private VendorDao vendorDao = new VendorDao();
 
 
-    @GetMapping("/user")
-    public String getAllUsers(Model model)
+    @GetMapping("/vendor")
+    public String getAllVendors(Model model)
     {
-        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
 
-        model.addAttribute("users", users);
+        model.addAttribute("vendors", vendors);
 
-        return "users/index";
+        return "vendors/index";
     }
 
-    @GetMapping("/user/add")
-    public String addUser(Model model)
+    @GetMapping("/vendor/add")
+    public String addVendor(Model model)
     {
-        model.addAttribute("user", new User());
+        model.addAttribute("vendor", new Vendor());
         model.addAttribute("action", "add");
 
-        return "users/add_edit";
+        return "vendors/add_edit";
     }
 
-    @PostMapping("/user/add")
-    public String addUser(@ModelAttribute("user") User user)
+    @PostMapping("/vendor/add")
+    public String addVendor(@ModelAttribute("vendor") Vendor vendor)
     {
-        userDao.addUser(user);
+        vendorDao.addVendor(vendor);
 
         return "redirect:/transactions";
     }
 
-    @GetMapping("/user/{id}/edit")
-    public String editUser(Model model, @PathVariable int id)
+    @GetMapping("/vendor/{id}/edit")
+    public String editVendor(Model model, @PathVariable int id)
     {
-        User user = userDao.getUserById(id);
-        model.addAttribute("user", user);
+        Vendor vendor = vendorDao.getVendorById(id);
+        model.addAttribute("vendor", vendor);
         model.addAttribute("action", "edit");
 
-        return "users/add_edit";
+        return "vendors/add_edit";
 
     }
 
-    @PostMapping("/user/{id}/edit")
-    public String editUser(@ModelAttribute("user") User user, @PathVariable int id)
+    @PostMapping("/vendor/{id}/edit")
+    public String editVendor(@ModelAttribute("vendor") Vendor vendor, @PathVariable int id)
     {
-        user.setUserId(id);
-        userDao.updateUser(user);
+        vendor.setVendorId(id);
+        vendorDao.updateVendor(vendor);
 
         return "redirect:/transactions";
 

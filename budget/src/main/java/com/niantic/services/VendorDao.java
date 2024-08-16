@@ -1,6 +1,7 @@
 package com.niantic.services;
 
 
+import com.niantic.models.Category;
 import com.niantic.models.Vendor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.ArrayList;
-import javax.sql.DataSource;
 
 @Component
 public class VendorDao
@@ -53,6 +53,33 @@ public class VendorDao
 
     }
 
+    public Vendor getVendorById(int id)
+    {
+        Vendor vendor = null;
+
+        String sql = """
+                SELECT vendor_id
+                    , vendor_name
+                    , website
+                FROM vendors
+                WHERE vendor_id = ?;
+                """;
+
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
+
+        if (row.next())
+        {
+            int vendorId = row.getInt("vendor_id");
+            String vendorName = row.getString("vendor_name");
+            String website = row.getString("website");
+
+           vendor = new Vendor(vendorId, vendorName, website);
+
+        }
+
+        return vendor;
+    }
+
     public void addVendor (Vendor vendors)
     {
         String sql = """
@@ -71,6 +98,21 @@ public class VendorDao
                 vendors.getVendorName(),
                 vendors.getWebsite());
 
+    }
+
+    public void updateVendor(Vendor vendor)
+    {
+        String sql = """
+                UPDATE vendors
+                SET vendor_name = ?
+                    , website = ?
+                WHERE vendor_id = ?;
+                """;
+
+        jdbcTemplate.update(sql,
+                vendor.getVendorName(),
+                vendor.getWebsite(),
+                vendor.getVendorId());
     }
 
     public void deleteVendor(int vendorId)
