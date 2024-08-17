@@ -7,22 +7,22 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5 mb-5">
     <h1 th:if="${action} =='add'">Add Vendor</h1>
     <h1 th:if="${action} =='edit'">Edit Vendor</h1>
 
     <form action="" th:object="${vendor}" method="post">
-        <div>
-            <label class="" th:for="*{vendorName}"> Vendor Name</label>
-            <input  type="text" placeholder="Vendor Name" th:field="*{vendorName}">
+        <div class="form-floating mb-3">
+            <label th:for="*{vendorName}"> Vendor Name</label>
+            <input  type="text"  placeholder="Vendor Name" th:field="*{vendorName}" class="form-control">
         </div>
-        <div>
-            <label class="" th:for="*{website}">Website</label>
-            <input type="text" placeholder="Website" th:field="*{website}">
+        <div class="form-floating mb-3">
+            <label th:for="*{website}">Website</label>
+            <input type="text"  placeholder="Website" th:field="*{website}" class="form-control">
         </div>
 
 
-        <input class="" type="submit" value="save">
+        <input class="btn btn-secondary" type="submit" value="Save">
 
 
     </form>

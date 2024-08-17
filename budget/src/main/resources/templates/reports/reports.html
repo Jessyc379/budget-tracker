@@ -8,11 +8,11 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
-    <h4 th:text="${message}"></h4>
-    <table>
+<main class="container mt-5 mb-5">
+    <h1 th:text="${message}"></h1>
+    <table class="table table-striped">
         <thead>
-        <tr>
+        <tr class="table-secondary">
             <th>Transaction Id</th>
             <th>Category Name</th>
             <th>Username</th>

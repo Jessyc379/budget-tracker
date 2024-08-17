@@ -7,35 +7,35 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5 mb-5">
     <h1 th:if="${action} =='add'">Add User</h1>
     <h1 th:if="${action} =='edit'">Edit User</h1>
 
     <form action="" th:object="${user}" method="post">
-        <div>
-            <label class="" th:for="*{userName}"> User Name</label>
-            <input  type="text" placeholder="User Name" th:field="*{userName}">
+        <div class="form-floating mb-3">
+            <label th:for="*{userName}"> User Name</label>
+            <input type="text" placeholder="User Name" th:field="*{userName}" class="form-control">
         </div>
-        <div>
-            <label class="" th:for="*{firstName}">First Name</label>
-            <input type="text" placeholder="First Name" th:field="*{firstName}">
+        <div class="form-floating mb-3">
+            <label th:for="*{firstName}">First Name</label>
+            <input type="text" placeholder="First Name" th:field="*{firstName}" class="form-control">
         </div>
-        <div>
-            <label class="" th:for="*{lastName}">Last Name</label>
-            <input class="" type="text" placeholder="Last Name" th:field="*{lastName}">
+        <div class="form-floating mb-3">
+            <label th:for="*{lastName}">Last Name</label>
+            <input type="text" placeholder="Last Name" th:field="*{lastName}" class="form-control">
 
         </div>
-        <div>
-            <label class="" th:for="*{phone}">Phone</label>
-            <input class="" type="text" placeholder="Phone" th:field="*{phone}">
+        <div class="form-floating mb-3">
+            <label th:for="*{phone}">Phone</label>
+            <input type="text" placeholder="Phone" th:field="*{phone}" class="form-control">
         </div>
-        <div>
-            <label class="" th:for="*{email}">Email</label>
-            <input class="" type="text" placeholder="Email" th:field="*{email}">
+        <div class="form-floating mb-3">
+            <label th:for="*{email}">Email</label>
+            <input type="text" placeholder="Email" th:field="*{email}" class="form-control">
         </div>
 
 
-        <input class="" type="submit" value="save">
+        <input class="btn btn-secondary" type="submit" value="Save">
 
 
     </form>

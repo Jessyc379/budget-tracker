@@ -8,16 +8,11 @@
 <nav th:replace="fragments/nav :: nav"></nav>
 
 
-<main>
+<main class="container mt-5 mb-5">
     <h1>Delete Transactions</h1>
-    <p>You are about to delete the following transaction, do you want to continue?</p>
-    <form method="post">
-        <input type="submit" value="Delete">
-        <a th:href="@{|/transactions|}">Cancel</a>
-    </form>
-
-    <br>
-    <table>
+    <p class="alert alert-danger"><strong> You are about to delete the following transaction, do you want to continue?</strong></p>
+    
+    <table class="table">
         <tr>
             <th>Transaction Id</th>
             <td th:text="${transaction.transactionId}"></td>
@@ -48,6 +43,10 @@
         </tr>
 
     </table>
+    <form method="post">
+        <input type="submit" value="Delete" class="btn btn-danger">
+        <a th:href="@{|/transactions|}" class="btn btn-outline-info">Cancel</a>
+    </form>
 </main>
 </body>
 </html>

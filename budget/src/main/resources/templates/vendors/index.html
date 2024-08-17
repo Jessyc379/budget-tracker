@@ -8,15 +8,15 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5 mb-5">
 
     <h1>All Vendors</h1>
 
-    <a th:href="@{|/vendor/add|}">Add Vendor</a>
+    <a th:href="@{|/vendor/add|}" class="btn btn-info mb-2">Add Vendor</a>
 
-    <table>
+    <table class="table table-striped">
         <thead>
-        <tr>
+        <tr class="table-secondary">
             <th>Id</th>
             <th>Vendor Name</th>
             <th>Website</th>
@@ -29,7 +29,7 @@
             <td th:text="${vendor.vendorName}"></td>
             <td th:text="${vendor.website}"></td>
             <td>
-                <a th:href="@{|/vendor/${vendor.vendorId}/edit|}">Edit</a>
+                <a th:href="@{|/vendor/${vendor.vendorId}/edit|}" class="btn btn-secondary">Edit</a>
             </td>
         </tr>
         </tbody>

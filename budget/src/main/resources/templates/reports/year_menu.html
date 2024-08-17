@@ -8,17 +8,20 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
-    <table>
+<main class="container mt-5 mb-5">
+
+    <h1>Reports by Year</h1>
+    <h5> Choose the year you wish to view:</h5>
+    <table class="table table-striped">
         <thead>
-        <tr>
-            <th>Choose Year</th>
+        <tr class="table-secondary">
+            <th>Year</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="year:${years}">
-            <td><a th:href="@{|/report/year/${year}|}" th:text="${year}"></a></td>
+            <th><a th:href="@{|/report/year/${year}|}" th:text="${year}"></a></th>
         </tr>
         </tbody>
     </table>

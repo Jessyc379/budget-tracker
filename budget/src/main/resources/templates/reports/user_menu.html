@@ -8,10 +8,13 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
-    <table>
+<main class="container mt-5 mb-5">
+
+    <h1>Reports by User</h1>
+    <h5> Choose the user report you wish to view:</h5>
+    <table class="table table-striped">
         <thead>
-        <tr>
+        <tr class="table-secondary">
             <th>Id</th>
             <th>User Name</th>
             <th>First Name</th>
@@ -21,7 +24,7 @@
         <tbody>
         <tr th:each="user:${users}">
             <td th:text="${user.userId}"></td>
-            <td><a th:href="@{|/report/user/${user.userId}|}" th:text="${user.userName}"></a></td>
+            <th><a th:href="@{|/report/user/${user.userId}|}" th:text="${user.userName}"></a></th>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
         </tr>
