@@ -22,6 +22,7 @@ public class VendorController {
         ArrayList<Vendor> vendors = vendorDao.getAllVendors();
 
         model.addAttribute("vendors", vendors);
+        model.addAttribute("pageTitle", "All Vendors");
 
         return "vendors/index";
     }
@@ -31,6 +32,7 @@ public class VendorController {
     {
         model.addAttribute("vendor", new Vendor());
         model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add Vendor");
 
         return "vendors/add_edit";
     }
@@ -40,7 +42,7 @@ public class VendorController {
     {
         vendorDao.addVendor(vendor);
 
-        return "redirect:/transactions";
+        return "redirect:/vendor";
     }
 
     @GetMapping("/vendor/{id}/edit")
@@ -49,6 +51,7 @@ public class VendorController {
         Vendor vendor = vendorDao.getVendorById(id);
         model.addAttribute("vendor", vendor);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", String.format("Edit Vendor - %s", vendor.getVendorName()));
 
         return "vendors/add_edit";
 
@@ -60,7 +63,7 @@ public class VendorController {
         vendor.setVendorId(id);
         vendorDao.updateVendor(vendor);
 
-        return "redirect:/transactions";
+        return "redirect:/vendor";
 
     }
 

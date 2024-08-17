@@ -32,6 +32,7 @@ public class ReportsController {
 
 
         model.addAttribute("categories", categories);
+        model.addAttribute("pageTitle", "Report - Category Menu");
 
 
         return "reports/category_menu";
@@ -60,6 +61,7 @@ public class ReportsController {
         model.addAttribute("users", users);
         model.addAttribute("action", "category");
         model.addAttribute("categoryName", catName);
+        model.addAttribute("pageTitle", String.format("Report by Category - %s", catName));
 
 
         return "reports/reports";
@@ -71,6 +73,7 @@ public class ReportsController {
         ArrayList<User> users = userDao.getAllUsers();
 
         model.addAttribute("users", users);
+        model.addAttribute("pageTitle", "Report - User Menu");
 
         return "reports/user_menu";
     }
@@ -94,13 +97,16 @@ public class ReportsController {
         model.addAttribute("categories", categories);
         model.addAttribute("action", "user");
         model.addAttribute("userName", useName);
+        model.addAttribute("pageTitle", String.format("Report by User - %s", useName));
 
         return "reports/reports";
     }
 
     @GetMapping("/report/month")
-    public String getAllMonths()
+    public String getAllMonths(Model model)
     {
+
+        model.addAttribute("pageTitle", "Report - Month Menu");
         return "reports/month_menu";
     }
 
@@ -162,6 +168,7 @@ public class ReportsController {
         model.addAttribute("users", users);
         model.addAttribute("categories", categories);
         model.addAttribute("action", "month");
+        model.addAttribute("pageTitle", String.format("Report by Month - %s", monthName));
 
         return "reports/reports";
     }
@@ -172,6 +179,7 @@ public class ReportsController {
         ArrayList<Integer> year = transactionDao.getYearlyTransaction();
 
         model.addAttribute("years", year);
+        model.addAttribute("pageTitle", "Report - Year Menu");
 
 
         return "/reports/year_menu";
@@ -194,6 +202,7 @@ public class ReportsController {
         model.addAttribute("users", users);
         model.addAttribute("categories", categories);
         model.addAttribute("action", "year");
+        model.addAttribute("pageTitle", String.format("Report by Year - %d", year));
 
         return "reports/reports";
 

@@ -22,6 +22,7 @@ public class UserController {
         ArrayList<User> users = userDao.getAllUsers();
 
         model.addAttribute("users", users);
+        model.addAttribute("pageTitle", "All Users");
 
         return "users/index";
     }
@@ -31,6 +32,7 @@ public class UserController {
     {
         model.addAttribute("user", new User());
         model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add User");
 
         return "users/add_edit";
     }
@@ -40,7 +42,7 @@ public class UserController {
     {
         userDao.addUser(user);
 
-        return "redirect:/transactions";
+        return "redirect:/user";
     }
 
     @GetMapping("/user/{id}/edit")
@@ -49,6 +51,7 @@ public class UserController {
         User user = userDao.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", String.format("Edit User - %s", user.getUserName()));
 
         return "users/add_edit";
 
@@ -60,7 +63,7 @@ public class UserController {
         user.setUserId(id);
         userDao.updateUser(user);
 
-        return "redirect:/transactions";
+        return "redirect:/user";
 
     }
 

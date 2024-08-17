@@ -22,6 +22,7 @@ public class CategoryController {
         ArrayList<Category> categories = categoryDao.getAllCategories();
 
         model.addAttribute("categories", categories);
+        model.addAttribute("pageTitle", "All Categories");
 
         return "categories/index";
     }
@@ -31,6 +32,7 @@ public class CategoryController {
     {
         model.addAttribute("category", new Category());
         model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add Category");
 
         return "categories/add_edit";
     }
@@ -40,7 +42,7 @@ public class CategoryController {
     {
         categoryDao.addCategory(category);
 
-        return "redirect:/transactions";
+        return "redirect:/category";
     }
 
     @GetMapping("/category/{id}/edit")
@@ -49,6 +51,7 @@ public class CategoryController {
         Category category = categoryDao.getCategoryById(id);
         model.addAttribute("category", category);
         model.addAttribute("action", "edit");
+        model.addAttribute("pageTitle", String.format("Edit Category: %s", category.getCategoryName()));
 
         return "categories/add_edit";
 
@@ -60,7 +63,7 @@ public class CategoryController {
         category.setCategoryId(id);
         categoryDao.updateCategory(category);
 
-        return "redirect:/transactions";
+        return "redirect:/category";
 
     }
 
