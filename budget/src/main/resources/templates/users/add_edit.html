@@ -13,25 +13,24 @@
 
     <form action="" th:object="${user}" method="post">
         <div class="form-floating mb-3">
-            <label th:for="*{userName}"> User Name</label>
             <input type="text" placeholder="User Name" th:field="*{userName}" class="form-control">
+            <label th:for="*{userName}"> User Name</label>
         </div>
         <div class="form-floating mb-3">
-            <label th:for="*{firstName}">First Name</label>
             <input type="text" placeholder="First Name" th:field="*{firstName}" class="form-control">
+            <label th:for="*{firstName}">First Name</label>
         </div>
         <div class="form-floating mb-3">
-            <label th:for="*{lastName}">Last Name</label>
             <input type="text" placeholder="Last Name" th:field="*{lastName}" class="form-control">
-
+            <label th:for="*{lastName}">Last Name</label>
         </div>
         <div class="form-floating mb-3">
-            <label th:for="*{phone}">Phone</label>
             <input type="text" placeholder="Phone" th:field="*{phone}" class="form-control">
+            <label th:for="*{phone}">Phone</label>
         </div>
         <div class="form-floating mb-3">
-            <label th:for="*{email}">Email</label>
             <input type="text" placeholder="Email" th:field="*{email}" class="form-control">
+            <label th:for="*{email}">Email</label>
         </div>
 
 

@@ -7,44 +7,46 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5 mb-5">
     <h1 th:if="${action} =='add'">Add Transaction</h1>
     <h1 th:if="${action} =='edit'">Edit Transaction</h1>
 
     <form action="" th:object="${transaction}" method="post">
-        <div>
-            <label class="" th:for="*{userId}"> User Name</label>
-            <select type="text" placeholder="User Name" th:field="*{userId}">
+        <div class="form-floating mb-3">
+            <select type="text" placeholder="User Name" th:field="*{userId}" class="form-control">
                 <option th:each="user:${users}" th:text="${user.userName}" th:value="${user.userId}"></option>
             </select>
+            <label th:for="*{userId}"> User Name</label>
         </div>
-        <div>
-            <label class="" th:for="*{categoryId}">Category Name</label>
-            <select type="text" placeholder="Category Name" th:field="*{categoryId}">
+
+        <div class="form-floating mb-3">
+            <select type="text" placeholder="Category Name" th:field="*{categoryId}" class="form-control">
                 <option th:each="category:${categories}" th:text="${category.categoryName}" th:value="${category.categoryId}"></option>
             </select>
+            <label th:for="*{categoryId}">Category Name</label>
         </div>
-        <div>
-            <label class="" th:for="*{vendorId}">Vendor Name</label>
-            <select class="" type="text" placeholder="Vendor Name" th:field="*{vendorId}">
+
+        <div class="form-floating mb-3">
+            <select type="text" placeholder="Vendor Name" th:field="*{vendorId}" class="form-control">
                 <option th:each="vendor:${vendors}" th:text="${vendor.vendorName}" th:value="${vendor.vendorId}"></option>
             </select>
+            <label th:for="*{vendorId}">Vendor Name</label>
         </div>
-        <div>
-            <label class="" th:for="*{transactionDate}">Transaction Date</label>
-            <input class="" type="text" placeholder="Transaction Date" th:field="*{transactionDate}">
+        <div class="form-floating mb-3">
+            <input type="text" placeholder="Transaction Date" th:field="*{transactionDate}" class="form-control">
+            <label th:for="*{transactionDate}">Transaction Date</label>
         </div>
-        <div>
-            <label class="" th:for="*{amount}">Amount</label>
-            <input class="" type="text" placeholder="Amount" th:field="*{amount}">
+        <div class="form-floating mb-3">
+            <input type="text" placeholder="Amount" th:field="*{amount}" class="form-control">
+            <label th:for="*{amount}">Amount</label>
         </div>
-        <div>
-        <label class="" th:for="*{notes}">Notes</label>
-        <input class="" type="text" placeholder="Notes" th:field="*{notes}">
+        <div class="form-floating mb-3">
+            <input type="text" placeholder="Notes" th:field="*{notes}" class="form-control">
+            <label th:for="*{notes}">Notes</label>
         </div>
 
 
-        <input class="" type="submit" value="save">
+        <input class="btn btn-secondary" type="submit" value="Save">
 
 
     </form>

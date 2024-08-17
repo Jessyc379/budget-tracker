@@ -7,21 +7,21 @@
 <body>
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<main>
+<main class="container mt-5 mb-5">
     <h1 th:if="${action} =='add'">Add Category</h1>
     <h1 th:if="${action} =='edit'">Edit Category</h1>
 
     <form action="" th:object="${category}" method="post">
-        <div>
+        <div class="form-floating mb-3">
+            <input type="text" placeholder="Category Name" th:field="*{categoryName}" class="form-control">
             <label class="" th:for="*{categoryName}"> Category Name</label>
-            <input type="text" placeholder="Category Name" th:field="*{categoryName}">
         </div>
-        <div>
+        <div class="form-floating mb-3">
+            <input type="text" placeholder="Description" th:field="*{description}" class="form-control">
             <label class="" th:for="*{description}">Description</label>
-            <input type="text" placeholder="Description" th:field="*{description}">
         </div>
 
-        <input class="" type="submit" value="save">
+        <input class="btn btn-secondary" type="submit" value="Save">
 
 
     </form>
