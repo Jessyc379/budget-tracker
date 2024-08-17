@@ -103,7 +103,13 @@ public class TransactionsController {
     public String deleteTransactions(Model model, @PathVariable int id)
     {
         Transaction transaction = transactionDao.getTransactionById(id);
+        ArrayList<Category> categories = categoryDao.getAllCategories();
+        ArrayList<User> users = userDao.getAllUsers();
+        ArrayList<Vendor> vendors = vendorDao.getAllVendors();
 
+        model.addAttribute("categories", categories);
+        model.addAttribute("users", users);
+        model.addAttribute("vendors", vendors);
         model.addAttribute("transaction", transaction);
         model.addAttribute("pageTitle", "Delete Transaction");
 

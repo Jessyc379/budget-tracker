@@ -11,7 +11,7 @@
 <main class="container mt-5 mb-5">
     <h1>Delete Transactions</h1>
     <p class="alert alert-danger"><strong> You are about to delete the following transaction, do you want to continue?</strong></p>
-    
+
     <table class="table">
         <tr>
             <th>Transaction Id</th>
@@ -19,15 +19,15 @@
         </tr>
         <tr>
             <th>Category Name</th>
-            <td th:text="${transaction.categoryId}"></td>
+            <td th:each="category:${categories}" th:if="${transaction.categoryId} == ${category.categoryId}" th:text="${category.categoryName}"></td>
         </tr>
         <tr>
             <th>Username</th>
-            <td th:text="${transaction.userId}"></td>
+            <td th:each="user:${users}" th:if="${transaction.userId} == ${user.userId}" th:text="${user.userName}"></td>
         </tr>
         <tr>
             <th>Vendor Name</th>
-            <td th:text="${transaction.vendorId}"></td>
+            <td th:each="vendor:${vendors}" th:if="${transaction.vendorId} == ${vendor.vendorId}" th:text="${vendor.vendorName}"></td>
         </tr>
         <tr>
             <th>Transaction Date</th>
